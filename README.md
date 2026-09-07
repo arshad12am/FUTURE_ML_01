@@ -147,3 +147,51 @@ Files:
 
 random_forest_sales_model.pkl
 random_forest_features.pkl
+
+Load the model:
+
+import joblib
+
+rf_model = joblib.load("random_forest_sales_model.pkl")
+rf_features = joblib.load("random_forest_features.pkl")
+
+The saved feature list ensures that future predictions use the same feature configuration as the trained model.
+
+Technologies Used
+Python
+pandas
+NumPy
+scikit-learn
+Matplotlib
+Seaborn
+Joblib
+Kaggle Notebooks
+Key Learnings
+
+This project demonstrated the importance of:
+
+Historical feature engineering
+Time-aware model validation
+Avoiding future-data leakage
+Comparing simple and nonlinear models
+Evaluating multiple error metrics
+Inspecting model performance across time
+Saving both the trained model and its feature configuration
+Future Improvements
+
+Possible future improvements include:
+
+More extensive temporal cross-validation
+Hyperparameter tuning
+Additional store-level features
+More advanced calendar features
+Gradient-boosting models
+Error analysis by store and time period
+Separate evaluation for open and closed stores
+Generating predictions for the test dataset
+Deploying the forecasting pipeline
+Conclusion
+
+This project established a strong machine learning baseline for store-sales forecasting.
+
+The final Random Forest model achieved an average R² of approximately 93.66% across the valid temporal validation folds, demonstrating that historical sales and operational features can provide strong predictive performance for daily store sales.
