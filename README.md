@@ -93,3 +93,57 @@ RandomForestRegressor(
     random_state=42,
     n_jobs=-1
 )
+
+Evaluation Strategy
+
+Since the task is time-series forecasting, random train-test splitting was avoided.
+
+The project used expanding-window temporal cross-validation:
+
+Earlier observations were used for training
+Later observations were used for validation
+The training window expanded over time
+Future observations were not used to predict earlier observations
+
+This provides a more realistic evaluation of future forecasting performance.
+
+Results
+Linear Regression
+
+Best recorded temporal cross-validation result:
+
+Metric	Average
+MAE	900.51
+RMSE	1348.41
+R²	0.8785
+Random Forest
+
+Using the final seven-feature configuration and the first four valid temporal folds:
+
+Metric	Average
+MAE	594.27
+RMSE	988.79
+R²	0.9366
+Interpretation
+
+The Random Forest model outperformed the Linear Regression baseline on the evaluated temporal validation folds.
+
+The results suggest that:
+
+Historical sales are highly predictive of future sales
+Lag features capture recurring sales patterns
+Rolling features capture recent sales behavior
+Store opening status is important
+Promotions provide additional predictive information
+Nonlinear modeling improves performance over the linear baseline
+
+The fifth fold was excluded because it contained only four validation observations, making its metrics unreliable.
+
+Saved Model
+
+The trained model and feature list were saved using Joblib.
+
+Files:
+
+random_forest_sales_model.pkl
+random_forest_features.pkl
